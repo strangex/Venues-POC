@@ -2,8 +2,8 @@ package actors
 
 import scala.collection.mutable
 
-import play.api.libs.json._
 import akka.actor._
+import play.api.libs.json._
 
 import models.Messages._
 import models._

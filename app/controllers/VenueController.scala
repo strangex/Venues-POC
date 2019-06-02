@@ -7,11 +7,11 @@ import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 import scala.concurrent.Future
 
-import play.api.mvc._
-import play.api.libs.json._
 import akka.actor.ActorRef
 import akka.pattern.ask
 import akka.util.Timeout
+import play.api.mvc._
+import play.api.libs.json._
 
 import models.Messages._
 import models.{Venue, VenueID}

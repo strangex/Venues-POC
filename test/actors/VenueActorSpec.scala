@@ -2,9 +2,9 @@ package actors
 
 import java.util.UUID
 
-import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
 import akka.testkit.{ImplicitSender, TestActorRef, TestKit}
 import akka.actor.ActorSystem
+import org.scalatest.{BeforeAndAfterAll, Matchers, WordSpecLike}
 import play.api.libs.json._
 
 import models._

@@ -3,12 +3,14 @@ package actors
 import scala.collection.mutable
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext
+
 import akka.actor.Actor
 import akka.pattern.ask
 import akka.util.Timeout
-import models.Messages._
-import models._
 import play.api.libs.json.Json
+
+import models._
+import models.Messages._
 
 class PlayerActor extends Actor {
 
