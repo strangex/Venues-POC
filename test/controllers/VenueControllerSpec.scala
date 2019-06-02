@@ -97,26 +97,22 @@ class VenueControllerSpec
 
       def getResponse() = controller.delete(id)(request)
 
-      "succeed on upon receiving a venueID that already exists" in {
+      "succeed on upon receiving a SuccessNotification" in {
         val response = getResponse()
 
         probe.expectMsgType[DeleteVenue]
 
-        probe.reply(
-          SuccessNotification(s"Venue 687e8292-1afd-4cf7-87db-ec49a3ed93b1 has been deleted!!")
-        )
+        probe.reply(SuccessNotification(""))
 
         status(response) mustEqual OK
       }
 
-      "fail on upon receiving a venueID that doesn't exist" in {
+      "fail on upon receiving a FailureNotification" in {
         val response = getResponse()
 
         probe.expectMsgType[DeleteVenue]
 
-        probe.reply(
-          FailureNotification(s"Venue 687e8292-1afd-4cf7-87db-ec49a3ed93b1 does not exist !!")
-        )
+        probe.reply(FailureNotification(""))
 
         status(response) mustEqual BAD_REQUEST
       }

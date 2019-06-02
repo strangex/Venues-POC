@@ -79,7 +79,7 @@ class VenueActor extends Actor {
     } else {
       venues.put(venue.id, venue.copy(ownerID = Some(player.id)))
 
-      PurchaseSuccess(player.copy(money = player.money - venue.price), venue)
+      PurchaseSucceeded(venue)
     }
   }
 }

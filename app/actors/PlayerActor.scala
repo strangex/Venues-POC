@@ -39,13 +39,15 @@ class PlayerActor extends Actor {
             case PurchaseFailed(reason) =>
               controller ! FailureNotification(reason)
 
-            case PurchaseSuccess(updatedPlayer, venue) =>
-              players.put(updatedPlayer.id, updatedPlayer)
+            case PurchaseSucceeded(venue) =>
+              val rest = player.money - venue.price
+
+              players.put(player.id, player.copy(money = rest))
 
               val message =
-                s"""${venue.name} was bought by ${updatedPlayer.id} for
-                   |${venue.price}. Player ${updatedPlayer.id} has
-                   |${updatedPlayer.money}
+                s"""${venue.name} was bought by ${player.id} for
+                   |${venue.price}. Player ${player.id} has
+                   |$rest
                    |left.""".stripMargin.replaceAll("\n", " ")
 
               controller ! SuccessNotification(message)

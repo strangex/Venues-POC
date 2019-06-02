@@ -42,12 +42,11 @@ package object models {
     case class PurchaseFailed(reason: String) extends PurchaseStatus
 
     /** Purchase status indicating success and holding
-      * the player with remaining money and purchased venue.
+      * the purchased venue.
       *
-      * @constructor create new PurchaseSuccess with player and venue
-      * @param player player purchasing venue
+      * @constructor create new PurchaseSuccess with purchased venue
       * @param venue purchased venue
       */
-    case class PurchaseSuccess(player: Player, venue: Venue) extends PurchaseStatus
+    case class PurchaseSucceeded(venue: Venue) extends PurchaseStatus
   }
 }

@@ -3,12 +3,25 @@ package models
 import java.util.UUID
 
 import org.scalatest.{MustMatchers, WordSpec}
-import play.api.libs.json.{JsDefined, JsUndefined, Json}
+import play.api.libs.json._
 
 class VenueSpec extends WordSpec with MustMatchers {
 
   "Venue model" when {
     "trying to be constructed from a json" must {
+      "fail if json is mal formatted" in {
+        val json = Json.parse(
+          """
+            |{
+            | "id" : "687e8292-1afd-4cf7-87db-ec49a3ed93b1",
+            | "price" : 1000
+            |}
+          """.stripMargin
+        )
+
+        json.validate[Venue] mustBe 'error
+      }
+
       "be successfully validated if json has no owner key" in {
         val json = Json.parse(
           """

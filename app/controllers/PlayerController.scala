@@ -37,13 +37,17 @@ class PlayerController @Inject()(
 
   /** Purchase venue. */
   def purchase() = Action(parse.json).async { request =>
-    val purchaseResult: JsResult[PurchaseID] = request.body.validate[PurchaseID]
+    val purchaseResult: JsResult[PurchaseID] =
+      request.body.validate[PurchaseID]
 
     purchaseResult.fold(
       errors => {
         Future {
           BadRequest(
-            Json.obj("status" -> BAD_REQUEST, "message" -> JsError.toJson(errors))
+            Json.obj(
+              "status" -> BAD_REQUEST,
+              "message" -> JsError.toJson(errors)
+            )
           )
         }
       },
@@ -51,14 +55,14 @@ class PlayerController @Inject()(
         val message = PurchaseRef(venueActor, purchase)
 
         (playerActor ? message).mapTo[Notification].map {
-          case SuccessNotification(message) =>
+          case SuccessNotification(notification) =>
             Ok(
-              Json.obj("status" -> OK, "message" -> message)
+              Json.obj("status" -> OK, "message" -> notification)
             )
 
-          case FailureNotification(message) =>
+          case FailureNotification(notification) =>
             BadRequest(
-              Json.obj("status" -> BAD_REQUEST, "message" -> message)
+              Json.obj("status" -> BAD_REQUEST, "message" -> notification)
             )
         }
       }

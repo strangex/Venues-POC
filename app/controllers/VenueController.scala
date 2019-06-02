@@ -35,7 +35,10 @@ class VenueController @Inject()(
       errors => {
         Future {
           BadRequest(
-            Json.obj("status" -> BAD_REQUEST, "message" -> JsError.toJson(errors))
+            Json.obj(
+              "status" -> BAD_REQUEST,
+              "message" -> JsError.toJson(errors)
+            )
           )
         }
       },
