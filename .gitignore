@@ -1,0 +1,15 @@
+logs
+target
+project/project
+project/target
+tmp
+dist
+.idea
+.cache
+.history
+.lib
+.class
+*.log
+*.iml
+*.ipr
+*.iws

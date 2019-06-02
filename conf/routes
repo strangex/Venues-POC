@@ -1,0 +1,11 @@
+# Create/Update venue
+PUT /venues controllers.VenueController.update()
+
+# List all venues
+GET /venues controllers.VenueController.getAll()
+
+# Delete venue
+DELETE /venues/:id controllers.VenueController.delete(id: java.util.UUID)
+
+# Buying venue
+POST /venues/purchase controllers.PlayerController.purchase()
