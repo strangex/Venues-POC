@@ -47,6 +47,24 @@ For now, two players are hardcoded and they are:
 
 Each restart of the application resets the state to the above.
 
+### Getting all players
+```
+> curl http://localhost:9000/players
+{
+    "status" : "200",
+    "data" : [
+        {
+            "id" : "player1",
+            "money" : 500
+        },
+        {
+            "id" : "player2",
+            "money" : 2000
+        }
+    ]
+}
+```
+
 ### Buying a venue
 
 #### Scenario 1: Buying a venue when player does not exist
@@ -97,4 +115,23 @@ Each restart of the application resets the state to the above.
     "owner:" "player2"
   }
 ]
+```
+
+Note that after a successful purchase, the player gets its budget reduced by the price of the venue.
+
+```
+> curl http://localhost:9000/players
+{
+    "status" : "200",
+    "data" : [
+        {
+            "id" : "player1",
+            "money" : 500
+        },
+        {
+            "id" : "player2",
+            "money" : 1000
+        }
+    ]
+}
 ```

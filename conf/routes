@@ -9,3 +9,6 @@ DELETE /venues/:id controllers.VenueController.delete(id: java.util.UUID)
 
 # Buying venue
 POST /venues/purchase controllers.PlayerController.purchase()
+
+# List all players
+GET /players controllers.PlayerController.getAll()

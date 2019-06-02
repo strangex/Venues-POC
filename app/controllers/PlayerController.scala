@@ -26,6 +26,15 @@ class PlayerController @Inject()(
 
   implicit val timeout: Timeout = 10.seconds
 
+  /** List all players. */
+  def getAll() = Action.async {
+    (playerActor ? GetAll).mapTo[JsValue].map { data =>
+      Ok(
+        Json.obj("status" -> OK, "data" -> data)
+      )
+    }
+  }
+
   /** Purchase venue. */
   def purchase() = Action(parse.json).async { request =>
     val purchaseResult: JsResult[PurchaseID] = request.body.validate[PurchaseID]

@@ -3,13 +3,12 @@ package actors
 import scala.collection.mutable
 import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext
-
 import akka.actor.Actor
 import akka.pattern.ask
 import akka.util.Timeout
-
 import models.Messages._
 import models._
+import play.api.libs.json.Json
 
 class PlayerActor extends Actor {
 
@@ -22,6 +21,9 @@ class PlayerActor extends Actor {
   )
 
   def receive: PartialFunction[Any, Unit] = {
+    case GetAll =>
+      sender() ! Json.toJson(players.values)
+
     case PurchaseRef(venueActor, PurchaseID(playerID, venueID)) =>
       players.get(playerID) match {
         case None =>

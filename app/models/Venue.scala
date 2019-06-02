@@ -40,7 +40,7 @@ object Venue {
 
   /** Write a json from Venue. */
   implicit val venueWrites: Writes[Venue] = (
-    (JsPath).write[VenueID] and
+    JsPath.write[VenueID] and
     (JsPath \ "name").write[String] and
     (JsPath \ "price").write[Int] and
     JsPath.writeNullable[PlayerID]
